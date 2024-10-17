@@ -6,6 +6,7 @@ export default class BuscadorCustomer extends Component {
 
     urlApi = Global.urlCustomers;
     cajaId = React.createRef();
+    urlApi2 = "";
 
     state = {
         customer: null
