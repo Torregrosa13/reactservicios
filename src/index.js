@@ -9,10 +9,17 @@ import BuscadorCoches from './component/BuscadorCoches';
 import DepartamentosEmpleados from './component/DepartamentosEmpleados';
 import EmpleadosOficios from './component/EmpleadosOficios';
 import Departamentos from './component/MaestroDetalle/Departamentos';
+import TablaMultiplicar from './component/TablaMultiplicar';
+import  Router  from './component/Router';
+import MenuRutas from './component/MenuRutas';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Departamentos />
+    <div>
+        <MenuRutas/>
+        <Router/>
+    </div>
 );
 
 // If you want to start measuring performance in your app, pass a function

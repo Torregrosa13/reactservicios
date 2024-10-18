@@ -8,32 +8,42 @@ export default class Empleados extends Component {
     urlEmpleados = Global.urlApiEmpleados;
 
     state = {
-        empleados: []
+        empleados: [],
+        texto: ""
     }
 
-    mostrarEmpleados = () =>{
+    mostrarEmpleados = () => {
         console.log(this.idDepartamento);
         var request = "api/Empleados/EmpleadosDepartamento/" + this.idDepartamento;
-        axios.get(this.urlEmpleados + request).then(response=>{
+        axios.get(this.urlEmpleados + request).then(response => {
             console.log(response.data);
             this.setState({
                 empleados: response.data
             })
-        }) 
-        
+        })
+
     }
 
-    componentDidMount = () =>{
+    componentDidMount = () => {
         this.mostrarEmpleados();
 
     }
-    
+
+    componentDidUpdate = (oldProps) => {
+        console.log("Old props: " + oldProps.iddepartamento);
+        console.log("Current props: " + this.props.iddepartamento);
+        if (oldProps.iddepartamento != this.props.iddepartamento) {
+            this.mostrarEmpleados();
+        }
+    }
+
 
     render() {
         return (
             <div>
-                <h3>Empleados</h3>
-                <table>
+                <h3>Empleados {this.props.iddepartamento}</h3>
+                <h2>{this.state.texto}</h2>
+                <table border={1}>
                     <thead>
                         <tr>
                             <th>Apellido</th>
@@ -43,8 +53,8 @@ export default class Empleados extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.empleados.map((empleado, index)=>{
-                                return(<tr key={index}>
+                            this.state.empleados.map((empleado, index) => {
+                                return (<tr key={index}>
                                     <td>{empleado.apellido}</td>
                                     <td>{empleado.oficio}</td>
                                     <td>{empleado.departamento}</td>
